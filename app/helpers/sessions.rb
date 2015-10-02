@@ -1,7 +1,7 @@
 def set_card_order(deck_id)
-  card_count = Deck.find(deck_id).cards.count
+  card_ids = Deck.find(deck_id).cards.pluck(:id)
 
-  serialized_card_order = (1..card_count).to_a.shuffle.join(' ')
+  serialized_card_order = cards_ids.join(' ')
 
   set_session(serialized_card_order)
 end
