@@ -1,6 +1,8 @@
 def set_card_order(deck_id)
   card_ids = Deck.find(deck_id).cards.pluck(:id)
 
+  card_ids.shuffle!
+
   serialized_card_order = card_ids.join(' ')
 
   set_session(serialized_card_order)
