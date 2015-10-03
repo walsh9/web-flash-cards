@@ -9,6 +9,10 @@ end
 
 get '/decks/:deck_id/cards' do
   set_card_order(params[:deck_id])
+
+  initialize_attempts
+  initialize_correct
+
   card_id = get_card
   redirect "/decks/#{params[:deck_id]}/cards/#{card_id}"
 end
@@ -19,8 +23,14 @@ get '/decks/:deck_id/cards/:id' do
 end
 
 post '/decks/:deck_id/cards/:id' do
+  increase_attempts
+
   @card = Card.find(params[:id])
   @guess = params[:guess]
   @correct = @card.back == @guess
+
+  increase_correct if @correct
+
+  require 'pry';binding.pry
   erb :"cards/show-back"
 end

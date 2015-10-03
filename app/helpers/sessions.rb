@@ -1,3 +1,19 @@
+def initialize_attempts
+  session[:attempts] = "0"
+end
+
+def initialize_correct
+  session[:correct] = "0"
+end
+
+def increase_attempts
+  session[:attempts] = (session[:attempts].to_i + 1).to_s
+end
+
+def increase_correct
+  session[:correct] = (session[:correct].to_i + 1).to_s
+end
+
 def set_card_order(deck_id)
   card_ids = Deck.find(deck_id).cards.pluck(:id)
 
@@ -22,7 +38,6 @@ def get_card
 
   card
 end
-
 def unserialize
   session[:card_order].split(' ')
 end
