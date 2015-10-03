@@ -17,3 +17,10 @@ get '/decks/:deck_id/cards/:id' do
   @card = Card.find(params[:id])
   erb :"cards/show-front"
 end
+
+post '/decks/:deck_id/cards/:id' do
+  @card = Card.find(params[:id])
+  @guess = params[:guess]
+  @correct = @card.back == @guess
+  erb :"cards/show-back"
+end
