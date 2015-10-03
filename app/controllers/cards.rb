@@ -10,7 +10,6 @@ end
 get '/decks/:deck_id/cards' do
   set_card_order(params[:deck_id])
 
-
   initialize_attempts
   initialize_correct
 
