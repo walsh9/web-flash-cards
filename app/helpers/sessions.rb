@@ -1,5 +1,5 @@
 def stats_list
-  [:attempts, :correct, :correct_on_first_try]
+  [:attempts, :correct, :correct_on_first_try, :skipped]
 end
 
 def initialize_stat(stat)
