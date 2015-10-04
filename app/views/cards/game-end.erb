@@ -1,0 +1,6 @@
+<p>You've completed a round of the "<%= @deck.name %>" deck.</p>
+<p>It took you <%= get_stats[:attempts] %> tries to get all the cards correct. You answered <%= get_stats[:correct_on_first_try] %> out of <%= @deck.cards.count %> cards correctly on the first try.</p>
+<nav><ul>
+    <li><a href="/decks/<%= @deck.id %>/cards/game-play">Play another round of "<%= @deck.name %>"</a></li>
+    <li><a href="/decks">Choose another deck</a></li>
+</ul></nav>

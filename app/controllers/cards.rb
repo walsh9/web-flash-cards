@@ -10,7 +10,8 @@ end
 
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
-    "<p>Redirect to end game route<p>"
+    @deck = : Deck.find(params[:deck_id])
+    erb :"cards/game-end"
   else
     card_id = get_card
     redirect "/decks/#{params[:deck_id]}/cards/#{card_id}"
@@ -47,4 +48,6 @@ post '/decks/:deck_id/cards/:id' do
   
   erb :"cards/show-back"
 end
+
+
 
