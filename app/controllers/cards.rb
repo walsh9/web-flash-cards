@@ -20,9 +20,9 @@ end
 get '/decks/:deck_id/cards' do
   set_card_order(params[:deck_id])
 
-  initialize_attempts
-  initialize_correct
-  initialize_correct_on_first_try
+  initialize_stat(:attempts)
+  initialize_stat(:correct)
+  initialize_stat(:correct_on_first_try)
 
   card_id = get_card
   redirect "/decks/#{params[:deck_id]}/cards/#{card_id}"
@@ -34,15 +34,15 @@ get '/decks/:deck_id/cards/:id' do
 end
 
 post '/decks/:deck_id/cards/:id' do
-  increase_attempts
+  increment_stat(:attempts)
 
   @card = Card.find(params[:id])
   @guess = params[:guess]
   @correct = @card.back == @guess
 
   if @correct
-    increase_correct
-    increase_correct_on_first_try if get_stats[:attempts] <= @card.deck.cards.count
+    increment_stat(:correct)
+    increment_stat(:correct_on_first_try) if get_stats[:attempts] <= @card.deck.cards.count
   end
   
   erb :"cards/show-back"
