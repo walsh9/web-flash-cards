@@ -6,12 +6,26 @@ def initialize_correct
   session[:correct] = "0"
 end
 
-def increase_attempts
-  session[:attempts] = (session[:attempts].to_i + 1).to_s
+def initialize_correct_on_first_try
+  session[:correct_on_first_try] = "0"
 end
 
 def increase_attempts
   session[:attempts] = (session[:attempts].to_i + 1).to_s
+end
+
+def increase_correct
+  session[:correct] = (session[:correct].to_i + 1).to_s
+end
+
+def increase_correct_on_first_try
+  session[:correct_on_first_try] = (session[:correct_on_first_try].to_i + 1).to_s
+end
+
+def get_stats
+  { :attempts => session[:attempts].to_i, 
+    :correct  => session[:correct].to_i,
+    :correct_on_first_try => session[:correct_on_first_try].to_i }
 end
 
 def set_card_order(deck_id)

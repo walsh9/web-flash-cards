@@ -10,6 +10,7 @@ end
 
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
+    require 'pry'; binding.pry
     "<p>Redirect to end game route<p>"
   else
     card_id = get_card
@@ -22,6 +23,7 @@ get '/decks/:deck_id/cards' do
 
   initialize_attempts
   initialize_correct
+  initialize_correct_on_first_try
 
   card_id = get_card
   redirect "/decks/#{params[:deck_id]}/cards/#{card_id}"
@@ -39,8 +41,11 @@ post '/decks/:deck_id/cards/:id' do
   @guess = params[:guess]
   @correct = @card.back == @guess
 
-  increase_correct if @correct
-
+  if @correct
+    increase_correct
+    increase_correct_on_first_try if get_stats[:attempts] <= @card.deck.cards.count
+  end
+  
   erb :"cards/show-back"
 end
 
