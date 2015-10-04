@@ -1,3 +1,13 @@
+get '/decks/:deck_id/cards/game-play' do
+  @deck = Deck.find(params[:deck_id])
+  erb :"cards/game-play"
+end
+
+post '/decks/:deck_id/cards/game-play' do
+  params[:choice] == "mc" ? session[:mc] = "1" : session[:mc] = nil
+  redirect "/decks/#{params[:deck_id]}/cards"
+end
+
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
     "<p>Redirect to end game route<p>"
@@ -33,3 +43,4 @@ post '/decks/:deck_id/cards/:id' do
 
   erb :"cards/show-back"
 end
+
