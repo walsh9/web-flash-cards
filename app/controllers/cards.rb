@@ -5,15 +5,12 @@ end
 
 post '/decks/:deck_id/cards/game-play' do
   params[:choice] == "mc" ? session[:mc] = "1" : session[:mc] = nil
-  session[:retry_cards] = ""
   redirect "/decks/#{params[:deck_id]}/cards"
 end
 
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
     @deck = Deck.find(params[:deck_id])
-    session[:card_order] = session[:retry_cards]
-    session[:retry_cards] = ""
     erb :"cards/game-end"
   else
     card_id = get_card
@@ -22,7 +19,7 @@ get '/decks/:deck_id/cards/next' do
 end
 
 get '/decks/:deck_id/cards/:id/skip' do
-  skip_card(params[:id])
+  add_retry_card(params[:id])
   redirect "/decks/#{params[:deck_id]}/cards/next"
 end
 
