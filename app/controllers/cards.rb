@@ -19,6 +19,7 @@ get '/decks/:deck_id/cards/next' do
 end
 
 get '/decks/:deck_id/cards/:id/skip' do
+  increment_stat(:skipped)
   add_retry_card(params[:id])
   redirect "/decks/#{params[:deck_id]}/cards/next"
 end
@@ -29,6 +30,7 @@ get '/decks/:deck_id/cards' do
   initialize_stat(:attempts)
   initialize_stat(:correct)
   initialize_stat(:correct_on_first_try)
+  initialize_stat(:skipped)
 
   card_id = get_card
   redirect "/decks/#{params[:deck_id]}/cards/#{card_id}"
