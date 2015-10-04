@@ -21,6 +21,11 @@ get '/decks/:deck_id/cards/next' do
   end
 end
 
+get '/decks/:deck_id/cards/:id/skip' do
+  skip_card(params[:id])
+  redirect "/decks/#{params[:deck_id]}/cards/next"
+end
+
 get '/decks/:deck_id/cards' do
   set_card_order(params[:deck_id])
 
