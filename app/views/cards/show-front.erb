@@ -3,8 +3,9 @@
 </article>
 <form action="<%= "/decks/#{@card.deck.id}/cards/#{@card.id}" %>" method="post">
   <% if multi_choice? %>
-    <% selection(@card).each do |choice| %>
-			<input type="radio" name="guess" value="<%= choice %>" id="guess" ><label for="guess"><%= choice %></label>
+    <% selection(@card).each_with_index do |choice, i| %>
+			<input type="radio" name="guess" value="<%= choice %>" id="guess<%= i %>" >
+      <label for="guess<%= i %>"><%= choice %></label>
     <% end %>
   <% else %>
   <label for="guess">My answer:</label>
