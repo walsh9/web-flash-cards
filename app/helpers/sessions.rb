@@ -1,17 +1,21 @@
-def initialize_attempts
-  session[:attempts] = "0"
+def stats_list
+  [:attempts, :correct, :correct_on_first_try]
 end
 
-def initialize_correct
-  session[:correct] = "0"
+def initialize_stat(stat) 
+  session[stat] = "0" if stats_list.include?(stat)
 end
 
-def increase_attempts
-  session[:attempts] = (session[:attempts].to_i + 1).to_s
+def increment_stat(stat) 
+  if stats_list.include?(stat)
+    session[stat] = (session[stat].to_i + 1).to_s
+  end
 end
 
-def increase_attempts
-  session[:attempts] = (session[:attempts].to_i + 1).to_s
+def get_stats
+  stats_list.map do |stat|
+    [stat, session[stat].to_i]
+  end.to_h
 end
 
 def set_card_order(deck_id)
