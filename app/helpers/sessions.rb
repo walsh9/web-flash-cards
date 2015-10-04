@@ -45,7 +45,6 @@ end
 
 def add_retry_card(card_id)
   session[:retry_cards] += "#{card_id} "
-
 end
 
 def unserialize
