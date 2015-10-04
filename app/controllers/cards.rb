@@ -10,7 +10,6 @@ end
 
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
-    require 'pry'; binding.pry
     "<p>Redirect to end game route<p>"
   else
     card_id = get_card
