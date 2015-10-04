@@ -26,3 +26,23 @@ end
 def unserialize
   session[:card_order].split(' ')
 end
+
+def multi_choice?
+  !!session[:mc]
+end
+
+def multiple_choice(card)
+  Card.where.not(id: card.id).where(deck_id: card.deck_id).limit(3).order("RANDOM()").pluck(:back)
+end
+
+def selection(card)
+  (multiple_choice(card) << card.back)
+end
+
+# def bot_selection(card) 
+#   %w(A B C D).zip((multiple_choice(card.deck_id) << card.back).shuffle).map { |e| e.join(": ") }
+# end
+
+# def bot_correct_letter_choice(card, choices)
+#   choices.select { |choice| choice.include?(card.back) }.flatten.first
+# end
