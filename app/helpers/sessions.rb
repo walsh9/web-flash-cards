@@ -44,10 +44,6 @@ def get_card
 end
 
 def add_retry_card(card_id)
-  session[:retry_cards] += "#{card_id} "
-end
-
-def skip_card(card_id)
   session[:card_order] = card_id + " " + session[:card_order]
 end
 
