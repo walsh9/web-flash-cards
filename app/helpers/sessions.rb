@@ -47,6 +47,10 @@ def add_retry_card(card_id)
   session[:retry_cards] += "#{card_id} "
 end
 
+def skip_card(card_id)
+  session[:card_order] = card_id + " " + session[:card_order]
+end
+
 def unserialize
   session[:card_order].split(' ')
 end
