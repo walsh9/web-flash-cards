@@ -10,7 +10,7 @@ end
 
 get '/decks/:deck_id/cards/next' do
   if session[:card_order].empty?
-    @deck = : Deck.find(params[:deck_id])
+    @deck = Deck.find(params[:deck_id])
     erb :"cards/game-end"
   else
     card_id = get_card
