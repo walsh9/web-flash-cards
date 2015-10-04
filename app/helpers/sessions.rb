@@ -2,11 +2,11 @@ def stats_list
   [:attempts, :correct, :correct_on_first_try]
 end
 
-def initialize_stat(stat) 
+def initialize_stat(stat)
   session[stat] = "0" if stats_list.include?(stat)
 end
 
-def increment_stat(stat) 
+def increment_stat(stat)
   if stats_list.include?(stat)
     session[stat] = (session[stat].to_i + 1).to_s
   end
@@ -43,6 +43,14 @@ def get_card
   card
 end
 
+def add_retry_card(card_id)
+  session[:retry_cards] += "#{card_id} "
+end
+
+def skip_card(card_id)
+  session[:card_order] = card_id + " " + session[:card_order]
+end
+
 def unserialize
   session[:card_order].split(' ')
 end
@@ -56,10 +64,10 @@ def multiple_choice(card)
 end
 
 def selection(card)
-  (multiple_choice(card) << card.back)
+  (multiple_choice(card) << card.back).shuffle
 end
 
-# def bot_selection(card) 
+# def bot_selection(card)
 #   %w(A B C D).zip((multiple_choice(card.deck_id) << card.back).shuffle).map { |e| e.join(": ") }
 # end
 
