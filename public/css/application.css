@@ -1,0 +1,11 @@
+.jumbotron h1 {
+  display: inline;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.modified-button {
+  width: 100px;
+  margin-bottom: 5px;
+  padding: 1px;
+}

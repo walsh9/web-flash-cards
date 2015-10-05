@@ -1,17 +1,26 @@
 <article>
-  <p><%= @card.front %></p>
+  <h2><%= @card.front %></h2>
 </article>
+
 <form action="<%= "/decks/#{@card.deck.id}/cards/#{@card.id}" %>" method="post">
   <% if multi_choice? %>
     <% selection(@card).each_with_index do |choice, i| %>
-			<input type="radio" name="guess" value="<%= choice %>" id="guess<%= i %>" >
-      <label for="guess<%= i %>"><%= choice %></label>
+      <h2>
+        <label>
+          <input type="radio" name="guess" value="<%= choice %>" id="guess<%= i %>" />
+          <%= choice %>
+        </label>
+      </h2>
     <% end %>
   <% else %>
-  <label for="guess">My answer:</label>
-  <input type="text" id="guess" name="guess">
+    <h2>
+      <label>
+        <input type="text" id="guess" name="guess">
+      </label>
+    </h2>
   <% end %>
-  <input type="submit" value="Answer!">
+  <button type="submit" class="btn btn-primary btn-large modified-button"><h5>Submit<h5></button>
 </form>
-<a href="/decks/<%= @card.deck.id %>/cards/<%= @card.id %>/skip">Skip to next card</a>
+
+<h2><a href="/decks/<%= @card.deck.id %>/cards/<%= @card.id %>/skip">Skip to next card</a></h2>
 
