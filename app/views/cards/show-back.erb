@@ -1,9 +1,19 @@
-<article>
-  <p><%= @card.back %></p>
+<div class="flipcontainer">
+<article class="card">
+  <div class="front face panel">
+    <%= @card.front %>
+  </div>
+  <div class="back face panel">
+    <%= @card.back %>
+  </div>
 </article>
+</div>
+
+
 <% if @correct %>
-  <p>Your guess of "<%= @guess %>" is correct!</p>
+  <h2>Your guess of "<%= @guess %>" is correct!</h2>
 <% else %>
-  <p>Your guess of "<%= @guess %>" is super wrong!</p>
+  <h2>Your guess of "<%= @guess %>" is super wrong!</h2>
 <% end %>
-<a href="/decks/<%= @card.deck.id %>/cards/next">Next card</a>
+
+<h2><a href="/decks/<%= @card.deck.id %>/cards/next">Next Card</a></h2>

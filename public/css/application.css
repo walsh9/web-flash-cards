@@ -1,0 +1,55 @@
+.jumbotron h1 {
+  display: inline;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.modified-button {
+  width: 100px;
+  margin-bottom: 5px;
+  padding: 1px;
+}
+
+.flipcontainer, .cardcontainer {
+    position: relative;
+    height: 16em;
+    -webkit-perspective: 2000;
+            perspective: 2000;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: 1s;
+            transition: 1s;
+    font-size: 2em;
+}
+
+.flipcontainer.flip .card {
+    -webkit-transform: rotateY( 180deg );
+            transform: rotateY( 180deg );
+}
+
+.card .face {
+    padding-top: 1em;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+
+.card .front {
+    z-index: 2;
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+}
+
+.card .back {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+}

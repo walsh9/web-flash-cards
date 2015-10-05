@@ -1,6 +1,23 @@
+<h1>Pick Your Game Mode!</h1>
+
 <form action="<%= "/decks/#{@deck.id}/cards/game-play" %>" method="post">
-	<input type="radio" name="choice" value="fr" id="fr"><label for="fr">Free Response</label>
-	<input type="radio" name="choice" value="mc" id="mc"><label for="mc">Multiple Choice</label>
-	<input type="submit" value="Play Now!">
+  <div class="radio">
+    <h2>
+    <label>
+      <input type="radio" name="choice" value="fr" id="fr">
+      Free Response
+    </label>
+    </h2>
+
+    <h2>
+    <label>
+      <input type="radio" name="choice" value="mc" id="mc">
+      Multiple Choice
+    </label>
+    </h2>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-large"><h4>Play Now!<h4></button>
 </form>
+
 
