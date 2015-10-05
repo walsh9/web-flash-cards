@@ -1,9 +1,9 @@
 <article>
-  <p><%= @card.back %></p>
+  <h1><p><%= @card.back %></p></h1>
 </article>
 <% if @correct %>
-  <p>Your guess of "<%= @guess %>" is correct!</p>
+  <h2><p>Your guess of "<%= @guess %>" is correct!</p></h2>
 <% else %>
-  <p>Your guess of "<%= @guess %>" is super wrong!</p>
+  <h2><p>Your guess of "<%= @guess %>" is super wrong!</p></h2>
 <% end %>
 <a href="/decks/<%= @card.deck.id %>/cards/next">Next card</a>
