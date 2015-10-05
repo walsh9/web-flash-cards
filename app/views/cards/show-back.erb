@@ -1,6 +1,14 @@
-<article>
-  <h1><%= @card.back %></h1>
+<div class="flipcontainer">
+<article class="card">
+  <div class="front face panel">
+    <%= @card.front %>
+  </div>
+  <div class="back face panel">
+    <%= @card.back %>
+  </div>
 </article>
+</div>
+
 
 <% if @correct %>
   <h2>Your guess of "<%= @guess %>" is correct!</h2>

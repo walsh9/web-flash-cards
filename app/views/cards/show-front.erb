@@ -1,6 +1,10 @@
-<article>
-  <h2><%= @card.front %></h2>
+<div class="cardcontainer">
+<article class="card">
+  <div class="front face panel">
+  <%= @card.front %>
+  </div>
 </article>
+</div>
 
 <form action="<%= "/decks/#{@card.deck.id}/cards/#{@card.id}" %>" method="post">
   <% if multi_choice? %>
