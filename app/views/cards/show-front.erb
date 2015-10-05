@@ -16,10 +16,11 @@
     <h2>
       <label>
         <input type="text" id="guess" name="guess">
-        <button type="submit" class="btn btn-primary btn-large modified-button"><h5>Answer!<h5></button>
       </label>
     </h2>
   <% end %>
+  <button type="submit" class="btn btn-primary btn-large modified-button"><h5>Submit<h5></button>
 </form>
-<a href="/decks/<%= @card.deck.id %>/cards/<%= @card.id %>/skip">Skip to next card</a>
+
+<h2><a href="/decks/<%= @card.deck.id %>/cards/<%= @card.id %>/skip">Skip to next card</a></h2>
 
